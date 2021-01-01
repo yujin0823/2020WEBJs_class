@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="list">
+        <li data-idx="1" data-gondr="yydh">1번 아이템입니다.</li>
+        <li data-idx="2" data-gondr="yydh">2번 아이템입니다.</li>
+        <li data-idx="3" data-gondr="yydh">3번 아이템입니다.</li>
+        <li data-idx="4" data-gondr="yydh">4번 아이템입니다.</li>
+    </ul>
+
+    <script>
+        // 클릭되었을 때 data-idx의 값을 불러와서 출력
+        // ul 밑에 자식인 li가 클릭되는 것 -> 이벤트 전파에 의해서 ul까지 이벤트가 올라감
+        const ul = document.querySelector("#list");
+        ul.addEventListener("click", e => {
+            // target : 이벤트를 발생시킨 녀석
+            // currentTarget : 이벤트를 처리하는 녀석
+            console.log(e.target.dataset);
+            // console.log(e.target.dataset.gondr);
+            let idx = e.target.getAttribute("data-idx");
+            console.log(idx);
+        });
+    </script>
+</body>
+</html>
