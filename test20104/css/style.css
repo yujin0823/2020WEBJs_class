@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+.wrapper {
+    margin: 0 auto;
+    width: 1000px;
+    background-color: #ffffff;
+}
+
+/* header */
+header {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.menu_box {
+    margin-top: 10px;
+    width: 450px;
+}
+
+.menu_box > ul > li {
+    width: 33.33333%;
+    float: left;
+    background-color: #983498;
+    color: #ffffff;
+    text-align: center;
+    line-height: 40px;
+}
+
+.sub {
+    background-color: #e3aeea;
+}
+
+.sub > li > a{
+    color: #444;
+}
+
+/* mainImg */
+#mainImg {
+    position: relative;
+    height: 400px;
+}
+
+#mainImg > img {
+    width: 100%;
+    height: 400px;
+}
+
+#mainImg > p {
+    padding-top: 8px;
+    position: absolute;
+    top: 0;
+    left: 450px;
+    width: 250px;
+    height: 40px;
+    background-color: #958796;
+    color: #7a7071;
+    font-size: 1.7em;
+    text-align: center;
+}
+
+/* content */
+#content {
+    margin-top: 60px;
+    position: relative;
+    width: 1000px;
+    height: 500px;
+}
+
+#content > .top {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* bulletin */
+#content > .bulletin {
+    width: 500px;
+}
+
+h2 {
+    text-align: center;
+    padding-bottom:10px;
+    border-bottom:1px solid #666;
+ }
+
+table {
+    width: 500px;
+    color: #444;
+    /* text-align: center; */
+}
+
+table tr:nth-child(2n){
+    background-color:#D1B59D  ;
+}
+
+/* partner */
+.partner {
+    width: 400px;
+}
+
+/* icons */
+.icons {
+    position: absolute;
+    bottom: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.icons > .item {
+    padding: 0 50px;
+    text-align: center;
+}
+
+.item > .text {
+    margin: 0 auto;
+    width: 80px;
+    height: 35px;
+    background-color: #D1B59D;
+    color: #ffffff;
+    border-radius: 10px;
+    line-height: 35px;
+}
+
+/* footer */
+footer {
+    height: 150px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #983498;
+    color: #ffffff;
+}
+
+.left {
+    padding-top: 70px;
+    padding-left: 10px;
+    width: 400px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.right {
+    padding: 20px;
+    font-size: 14px;
+}

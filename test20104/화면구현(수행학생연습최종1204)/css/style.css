@@ -1,0 +1,199 @@
+@charset "utf-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #666666;       /* 전체 웹페이지의 글자색 */
+    list-style: none;
+    text-decoration: none;
+}
+
+.wrapper {
+    width: 1000px;
+    margin: 0 auto;
+    position: relative;  // .popup의 포지선때문
+}
+
+header{
+    width: 100%;
+    height: 150px;
+    position: relative;
+}
+
+header > div {
+    float: left;
+}
+
+.logo-box {
+    width: 150px;
+    margin-top: 20px;
+    margin-left: 40px;
+}
+
+.menu {
+    width: 800px;
+    position: absolute;
+    left: 300px;
+    top: 40px;
+    z-index: 10;
+}
+
+.menu  ul li {
+    width: 200px;
+    height: 35px;
+    line-height: 35px;
+    float: left;
+    background-color: #6bcbd0;
+    text-align: center;
+    font-weight: bold;
+}
+
+.menu > ul > li:hover{
+    background-color: #9ffbff;
+}
+
+.menu>ul>li>ul>li:hover{
+    background-color: #379ef5;
+}
+
+.menu ul>li>ul {
+    display: none;
+}
+
+.mainImage {
+    height: 350px;
+    /* width: 100%; */
+    position: relative;
+}
+
+
+.information{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 300px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    background-color: #379ef5;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+}
+
+.contents {
+    height: 600px;
+    /* width: 100%; */
+}
+
+.contents > div {
+    float: left;
+}
+
+.notice {
+    width: 400px;
+    margin-right: 20px;
+}
+
+h1 {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #666;
+}
+.partner img {
+    float: left;
+    padding: 5px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+
+.iconcontents {
+    width: 150px;
+    margin-left: 20px;
+    margin-top: 50px;
+    text-align: center;
+
+}
+.iconcontents img {
+    margin: 10px 20px;
+   
+}
+.iconcontents img:hover {
+   
+    
+    
+    
+    
+}
+.iconcontents  button {
+    border: none;
+    border-radius: 5px;
+    width: 100px;
+    height: 30px;
+    background-color: #71d1e9;
+    color: #635f83;
+    font-size: 20px;
+    cursor: pointer;
+}
+.iconcontents  button:hover {
+   
+    
+}
+
+
+.contentpop{
+    
+    
+    
+    
+    
+    
+    
+    
+   display: none; 
+}
+.contentpop p {
+    
+}
+.popup{
+    
+    
+    
+    
+    
+    
+    
+    
+    display: none;
+}
+.popup .gallery {
+   
+    
+    
+}
+.exit {
+    
+    
+    
+}
+
+footer {
+    height: 150px;
+    width: 100%;
+    padding-top: 5px;
+    background-color: #9aabf8;
+    position: relative;
+}
+.left {
+    position: absolute;
+    left: 5px;
+}
+.right {
+    position: absolute;
+    right: 5px;
+}
+
