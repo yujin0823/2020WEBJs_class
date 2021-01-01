@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let users = [
+            { id: 11, name: 'Adam', age: 19, group: 'editor' },
+            { id: 47, name: 'John', age: 28, group: 'admin' },
+            { id: 85, name: 'William', age: 34, group: 'editor' },
+            { id: 97, name: 'Oliver', age: 28, group: 'admin' }
+        ];
+
+        // => {28:2, 19:1, 34:1}
+        let s = users.reduce( (result, user) => 
+        ({...result, [user.age] : (result[user.age] || 0) + 1}), {});
+
+        // if (result[user.age] === undefined) {
+        //     result[user.age] = 1;
+        // } else {
+        //     result[user.age]++;
+        // }
+        // return result;
+        console.log(s);
+
+        // Set -> 집합 중복 허락 X
+        let a = new Set([1, 2, 3, 2, 2, 3, 3, 1, 1, 1, 2]);
+        console.log(a);
+        console.log( [...a]);
+
+        // users의 그룹 중복X
+        let list = new Set(users.map(x => x.group));
+        console.log( [...list] );
+
+        let params = {lat: 45, lng: 6, alt: 1000};
+        // let a2 = Object.entries(params);
+        let a2 = Object.entries(params).map(
+            p => encodeURIComponent(p[0]) + "=" + encodeURIComponent(p[1])).join("&");
+        console.log(a2);
+        console.log(params);
+        
+    </script>
+</body>
+</html>

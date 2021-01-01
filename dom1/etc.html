@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let name = "이유진";
+        let age = 18;
+
+        // console.log("내 이름은 " + name + "이고 나이는 " + age + "살 입니다.");
+        // String template
+        console.log(`내 이름은 ${name}이고 나이는 ${age}살 입니다.`);
+
+        function makeTemplate( {id, title, content} ) {
+            return `<div class="item" data-id="${id}">
+                        <h4 class="title">${title}</h4>
+                        <span class="msg">${content}</span>
+                    </div>`;
+        }
+
+        let list = [
+            {id: 4, title: '제목입니다1.', content: '내용입니다1.'},
+            {id: 5, title: '제목입니다2.', content: '내용입니다2.'},
+            {id: 6, title: '제목입니다3.', content: '내용입니다3.'}
+
+        ]
+
+        //{id: 4, title: '제목입니다1.', content: '내용입니다1.'}, ...
+        // 하나하나 가져와서 탬플렛을 만들어주고 하나의 스트링으로 합쳐준 거
+        let templateList = list.map(x => makeTemplate(x)).join("");
+        console.log(templateList);
+
+        let article = {
+            id:4, title: '제목입니다.', content: '내용입니다'
+        }
+
+        let template = makeTemplate(article);
+        // let template = makeTemplat(4, '제목입니다.', '내용입니다.');
+        console.log(template);
+    </script>
+</body>
+</html>

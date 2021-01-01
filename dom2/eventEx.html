@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #one {
+            width: 400px;
+            height: 300px;
+            background-color: rgb(235, 85, 85);
+        }
+
+        #two {
+            width: 300px;
+            height: 200px;
+            background-color: rgb(43, 41, 150);
+        }
+
+        #three {
+            width: 200px;
+            height: 100px;
+            background-color: rgb(50, 150, 55);
+        }
+    </style>
+</head>
+<body>
+    <div id="one" data-gondr="1" class="box">
+        <div id="two" data-gondr="2" class="box">
+            <div id="three" data-gondr="3" class="box">
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // event는 자식에서 발생하면 자동으로 부모로 간다.
+        // event는 바디로 계속 올라감(하위 단계에서 상위 단계로 올라감) -> 이벤트 버블링
+        // document.querySelector("#one").addEventListener("click", e => {
+        //     console.log("one click");
+        // });
+
+        // document.querySelector("#two").addEventListener("click", e => {
+        //     console.log("two click");
+        // });
+
+        // document.querySelector("#three").addEventListener("click", e => {
+        //     console.log("three click");
+        // });
+
+        document.querySelectorAll("div").forEach(div => {
+            div.addEventListener("click", e => {
+                // console.log(e.target.id + "clcik");
+                // e.target : 이벤트를 발생시킨 놈
+                // e.currentTarget : 이벤트를 처리하고 있는 놈
+                // 우리 화면에서 봤을 때
+                // 초록색을 누르면 e.target은 초록색이고 e.currentTarget도 초록
+                // 근데 이벤트가 넘어가서 파랑색으로 넘어갔다. 
+                // 이벤트를 발생시킨 e.target은 초록색이고 e.currentTarget 파랑색
+                // 다시 넘어가서 빨간색이면 e.target은 초록색이고 e.currentTarget 빨간색
+
+                // 그래서 e.currentTarget을 불러와야함
+                // console.log(e.currentTarget.id + "clcik");
+
+                // console.log(e.currentTarget.dataset.gondr + "click");
+                // dataset은 data라고 앞에 붙여있는 것이 모여있는 거 
+                // data를 적게되면 자스의 dataset으로 object로 들어오게 된다.
+                // 이벤트의 전파를 막는 놈(더이상 이벤트가 부모로 올라기자 못하게 막는다).
+                // e.stopPropagation();
+            }); // capture, once(쇼핑몰 결제, 이메일 발송), passive
+        });
+
+        // event delegation == 이벤트 위임 절약 -> 영어로 검색해라
+        document.body.addEventListener("click", e => {
+            if (e.target.classList.contains("box")) {
+                console.log(e.target.dataset.gondr + "click")
+            }
+        });
+    </script>
+</body>
+</html>

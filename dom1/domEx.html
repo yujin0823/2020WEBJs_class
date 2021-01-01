@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>DOM 복습</title>
+</head>
+<body>
+    <!-- <div id="content">
+
+    </div>
+
+    <ul>
+        <li class="item">1</li>
+        <li class="item">2</li>
+        <li class="item">3</li>
+        <li class="item">4</li>
+    </ul> -->
+
+    <!-- dom : Document Object Model -->
+    <div id="content">
+        <div class="input-group">
+            <input type="text" id="username">
+            <button id="btnAdd">Add</button>
+        </div>
+        
+        <div class="btn-group">
+            <button class="btn" id="btnStart">시작</button>
+            <button class="btn" id="btnStop">정지</button>    
+        </div>
+    </div>
+    
+    <div id="box">
+        <ul id="userList">
+        
+        </ul>
+        <ul id="selectedList">
+        
+        </ul>
+    </div>
+    
+    <script>
+        // console.log(document);
+        // querySelector는 한 개만 가져온다. 
+        // let content = document.querySelector(".item");
+        // console.log(content);
+        // innerHTML : 글 넣고 싶을 때
+        // content.innerHTML = "글자 들어갑니다.";
+        // content.style.backgroundColor = "#ff0";
+
+        // querySelectorAll : 여러개 가져올 수 있다, 배열형태로 가져온다.
+        // let list = document.querySelectorAll(".item");
+        // console.log(list);
+        // list.forEach( (x, i) => {
+        //     if (i % 2 == 1)
+        //     x.style.backgroundColor = "#ff0";
+        // })
+
+        let nameList = ["박태양","강은진","김가현","김영현","김찬영","김창현",
+            "박민지","박명재","박수진","박지호","이수안","안진우","이유진","이준영",
+            "임상언","임채영","전제","정나영","정재성","최승민","하늘새미","한다원","조한슬"];
+
+        const userList = document.querySelector("#userList");
+        const selectedList = document.querySelector("#selectedList");
+        
+        // forEach문으로 nameList의 사이즈만큼 돌고
+        // makeLi을 반복한다.
+        // 반복문 돌면서 li를 만들고 그 li에 class명으로 item을 넣어주고, 
+        // 받은 name으로 li에 이름을 넣어주고
+        // userList에 자식으로 li를 넣어준다.
+        nameList.forEach( name => {
+            makeLi(name);
+        });
+
+        function makeLi(name){
+            let li = document.createElement("li");
+            // classList : 자스의 DOM객체의 class를 조작할 수 있는
+            li.classList.add("item");
+            li.innerHTML = name;
+
+            userList.appendChild(li);
+            return li;
+        }
+
+        // class가 item인 것을 모두 가져온다. -> ... -> 배열로 들어온다.
+        let list = [...document.querySelectorAll(".item")];
+
+        let before = list[0];
+        let idx = 0;
+        let timer, timeoutTimer;
+
+        // 정지 버튼
+        document.querySelector("#btnStop").addEventListener("click", e => {
+            clearInterval(timer);
+            stopTimeOut(50);
+        });
+
+        // 시작 버튼
+        document.querySelector("#btnStart").addEventListener("click", e => {
+            // setInterval로 반복되고 있는걸 멈추게 한다 = 이전의 인터블이 돌고 있다면 clear
+            // timer를 멈춰
+            clearInterval(timer);
+            // setTimeOut을 취소하는 역할
+            clearTimeout(timeoutTimer);
+
+            // setInterval : 일정한 간격으로 작업을 수행하기 위해서 사용
+            // clearInterval 함수를 사용하여 중지할 수 있다.
+            // ❗️ move함수 아래 참고
+            // 0.05초 마다 move함수 실행
+            timer = setInterval(()=> {
+                move();
+            }, 50);
+        });
+
+        // 사용자 추가
+        document.querySelector("#btnAdd").addEventListener("click", e => {
+            let usernameInput = document.querySelector("#username"); // input
+            console.log(usernameInput.value); // 사용자가 입력한 값
+            list.push(makeLi(usernameInput.value));
+        });
+
+        function stopTimeOut(time){
+            if(time >= 1000) {
+                // class이름 on을 없애고 fix를 추가한다.
+                list[idx].classList.remove("on");
+                list[idx].classList.add("fix");
+                // 걸린 사람 selectedList에 자식으로 추가
+                selectedList.appendChild(list[idx]);
+                list.splice(idx, 1); // list에서 원소제거 -> idx에서 부터 1개 제거
+                return;
+            }
+            
+            // setTimeout : 일정한 시간 후 함수 실행
+            timeoutTimer = setTimeout( ()=> {
+                move();
+                stopTimeOut(time + 80);
+            }, time);
+        }
+
+
+        // idx를 증가하고 배열의 길이 보다 크면 다시 0으로 만든다.
+        // list[0]부터(before) class에 on을 제거한다.
+        // list[idx]의 class에 on을 넣어준다.
+        // 그리고 before에 list[idx]를 넣어준다.
+        // 그러면 나중에 그 전에 있었던(idx - 1) li의 class에 on을 제거한다.
+        function move(){
+            idx++;
+            if(idx >= list.length){
+                idx = 0;
+            }
+            before.classList.remove("on");
+            list[idx].classList.add("on");
+            before = list[idx];
+        }
+    </script>
+</body>
+</html>
