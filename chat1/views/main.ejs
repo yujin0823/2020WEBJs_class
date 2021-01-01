@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>채팅서버</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <link rel="stylesheet" href="/app.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="/app.js"></script>
+</head>
+
+<body>
+    <!-- <div id="app">
+        <h4>{{message}}</h4>
+        v-model를 쓰는 순간 둘이 완전히 연결된다
+        <input type="text" v-model="hello">
+        <h4>{{hello}}</h4>
+        <ul>
+            <li v-for="item in list">{{item}}</li>
+        </ul>
+    </div>  
+
+    <script>
+        new Vue({
+            // element의 약자, vue로 만들 element를 지정
+            el:"#app",
+            data:{
+                message: "Welcome to Vue.js",
+                hello : "Hello World",
+                list:["임채영", "김가현", "안진우"]
+            },
+            methods:{
+                changeTest(e) {
+                    this.hello = e.target.value;
+                    // console.log(e.target.value);
+                }
+            }
+        });
+    </script> -->
+
+    <div id="chatApp">
+        <div class="container">
+            <div class="menu-box">
+                <div id="chat">
+                    <div class="chat_header">
+                        <p>ㅇㅇㅇ</p>
+                        <i class="far fa-trash-alt"></i>
+                    </div>
+                    <div id="msgBox">
+                        <div class="msg" :class="{my:chat.user.id === socket.id}" v-for="chat in chatList">
+                            {{chat.msg}}
+                        </div>
+                    </div>
+                    <div id="inputBox">
+                        <button id="btnSend" @click="sendMsg"><i class="fas fa-paperclip"></i></button>
+                        <input type="text" id="msg" v-model="textMsg" placeholder="type a message" @keydown.enter="sendMsg">
+                    </div>
+                </div>
+                <div id="userList">
+                    <div class="user_list_header">
+                        <input type="text" placeholder="Search..">
+                    </div>
+                    <div class="user_list_box">
+                        <div class="user" v-for="user in userList" :class="{my:user.id === socket.id}">
+                            <p>{{user.nickname}}</p>
+                        </div>
+                    </div>
+                    <div class="user_list_footer">
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <transition name="yy">
+            <div id="popup" v-if="!isLogin"> <!-- isLogin이 false일 때 -->
+                <div class="inner">
+                    <img src="/popup.jpg" alt="">
+                    <p>Hello World</p>
+                    <span>Lorem ipsum dolor sit amet consectetur, <br>adipisicing elit. </span>
+                    <div class="right_box">
+                        <h2>Register</h2>
+                        <p>Lorem ipsum dolor sit <span>amet</span> consectetur.</p>
+                        <span>Nickname</span>
+                        <input type="text" id="nickname" v-model="nickName" @keydown.enter="login">
+                        <span>Passowrd</span>
+                        <input type="text">
+                        <span>id</span>
+                        <input type="text">
+                        <span>sadads</span>
+                        <input type="text">
+                        <button id="btnLogin" @click="login">Enter</button>
+                    </div>
+                </div>
+            </div>
+        </transition>
+    </div>
+</body>
+</html>
