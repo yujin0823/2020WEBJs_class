@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>복습1</title>
+</head>
+<body>
+    <script>
+        let users = [
+            { id: 11, name: 'Adam', age: 19, group: 'editor' },
+            { id: 47, name: 'John', age: 28, group: 'admin' },
+            { id: 85, name: 'William', age: 34, group: 'editor' },
+            { id: 97, name: 'Oliver', age: 28, group: 'admin' }
+        ];
+
+        // filter, map, reduce에 대한 설명
+        // filter는 이름 그대로 조건에 따라서 요소들을 걸러내는 것 == if문이라고 생각해라
+        // data는 0번 부터 3번까지의 {}의 값이 들어온다.
+        // data는 하나하나의 정보 {내용들....}
+        // idx는 정말 idx
+        users.filter( function (data, idx){
+            console.log(data, idx);
+        });
+
+        let arr = users.filter( function (data, idx){
+            // return true; // 다 뜬다.
+            return false; // 아무것도 없다.
+        });
+        console.log(arr);
+
+        // let arr2 = users.filter( function (data, idx) {
+        //     if (data.age >= 20) {
+        //         return true;
+        //     } else {
+        //         return false;
+        //     }
+        // });
+
+        // function지우고 => 넣는다.
+        // 어차피 data.age >= 20의 값을 가져오는 것이므로 <- return
+        // idx 필요없니까 없애
+        let arr2 = users.filter( x => x.age >= 20 );
+        console.log(arr2);
+
+        let arr3 = users.filter(x => x.group == "editor");
+        console.log(arr3);
+    </script>
+</body>
+</html>

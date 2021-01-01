@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let users = [
+            { id: 11, name: 'Adam', age: 19, group: 'editor' },
+            { id: 47, name: 'John', age: 28, group: 'admin' },
+            { id: 85, name: 'William', age: 34, group: 'editor' },
+            { id: 97, name: 'Oliver', age: 28, group: 'admin' }
+        ];
+
+        // filter, map, reduce에 대한 설명
+        let arr = users.filter( x => x.age >= 20 );
+        console.log(arr);
+
+        let arr2 = users.filter(x => x.group == "editor");
+        console.log(arr2);
+
+        // let arr3 = users.map( data => {
+        //     if (data.age >= 20) {
+        //         data.adult = true;
+        //     } else {
+        //         data.adult = false;
+        //     }
+        //     return data;
+        // });
+
+        // let arr3 = users.map( x => x.age > 20 ? x.adult = true : x.adult = false);
+
+        let arr3 = users.map ( x => ({...x , adult : x.age >= 20}) );
+
+        console.log(arr3);
+
+        // reduce는 줄이는 거 배열에 있는 값을 종합해서 하나의 값으로 만들어내는 것
+        console.log("reduce");
+        let num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+        // num.reduce(함수, 초기값);
+        // let s = num.reduce( (sum, x) => sum.s + x, 0);
+        // console.log(s);
+        
+        let s = num.reduce( (sum, x) => ({...sum, s: (sum.s || 0) + x}), {});
+        let s2 = num.reduce( (s2, v))
+        console.log(s);
+    </script>
+</body>
+</html>

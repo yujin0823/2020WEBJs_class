@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log("-----조립 분해-----"); // 오브젝트 분해
+        let obj = {
+            x : 20,
+            y : 30,
+            name : "이유진"
+        };
+
+        // let x = obj.x;
+        // let y = obj.y;
+        let {x, y} = obj;
+
+        console.log(x, y);
+
+        window.addEventListener("click", function(e) {
+            // const {clientX, clientY} = e;
+            // console.log(clientX, clientY);
+            const { clientX:x, clientY:y, abc = 0} = e;
+            // ':'로 clientX에 x라는 별칭을 준다.
+            console.log(x, y, abc);
+        });
+
+        console.log("구조 분해");
+        // let { a,b } = obj;
+        function add ( {a, b} ) {
+            return a + b;
+        }
+
+        // let obj = {x:3, y:7};
+        // add(obj);
+        // x는 3, y는 7
+        add( {x:3, y:7} );
+        // console.log( add({x:3, y:7}) );
+
+        console.log("값 전달 참조전달")
+        function mod (value) {
+            // console.log(value); // {v: 5}
+            // console.log(value.v); // 5
+            value.v = value.v - 5;
+            return value;
+        }
+
+        // number타입과 스트링타입을 제외하고 전부 참조전달
+        // 아주 얕게 복사, 그 값을 변경하면 원본까지 복사
+        console.log("첫 번째 방법");
+        let a = {v:5};
+        console.log(a); // {v:5}
+        console.log(a.v); // 5
+        console.log( mod(a).v ); // 0
+
+        // 참조에 의한 전달을 하게된다.
+        console.log("두 번째 방법");
+        let b = {v:5};
+        mod(b);
+        console.log(b); // 0
+
+        let c = a;
+        c.v = 3;
+
+        console.log("a와 c출력")
+        console.log(a);
+        console.log(c);
+
+        console.log("변경 전");
+        let d = {a:5, b:3, c:4};
+        console.log(d);
+        // let e = {a : d.a, b : d.b, c : d.c};
+        let e = {...d}; // 전개연산자
+        console.log(e);
+        // = {a : d.a, b : d.b, c : d.c}
+        // = Json.parse(JSON.stringify(a));
+        e.c = 2;
+
+        console.log("변경 후");
+        console.log(d);
+        console.log(e);
+
+        let result1 = Math.max(1, 2, 3, 54, 123, 4, 133);
+        console.log("result1 : " + result1); // 133
+
+        let arr1 = [1, 2, 3, 54, 123, 4, 133];
+        let result2 = Math.max(arr1);
+        console.log("result2 : " + result2); // NaN
+        let result3 = Math.max(...arr1);
+        console.log("result3 : " + result3); // 133
+
+        let arr2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        let result4 = Math.max(...arr2); // 10
+        console.log("result4 : " + result4);
+
+        // 2의 배수 더해
+        console.log(arr2.filter(x => x % 2 == 0).reduce( (s, v) => s + v, 0));
+    </script>
+</body>
+</html>

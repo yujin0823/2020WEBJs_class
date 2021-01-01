@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>복습2</title>
+</head>
+<body>
+    <script>
+        let users = [
+            { id: 11, name: 'Adam', age: 19, group: 'editor' },
+            { id: 47, name: 'John', age: 28, group: 'admin' },
+            { id: 85, name: 'William', age: 34, group: 'editor' },
+            { id: 97, name: 'Oliver', age: 28, group: 'admin' }
+        ];
+
+        // let arr = user.map( (data, idx))
+        // adult만들어서 배열에 넣어주자!
+        // map이란? 맵핑한다. 원본에 데이터를 추가적으로 집어 넣어서 새로운 배열로 맵핑
+        let arr = users.map ( data => {
+            if (data.age >= 20) {
+                data.adult = true;
+            } else {
+                data.adult = false;
+            }
+            return data;
+        });
+        console.log(arr);
+
+        // 한 줄 코드 // 힌트 : 전개연산자 ...
+        let a = {...users}; // 쫙 펼쳐지면서 새로운 객체만들어진다
+        console.log(a);
+
+        // x가 복사된다. 에러나는 이유는 함수의 중괄호로 인식하기 때문
+        // return한 줄이기 때문에 return을 생략한다.
+        // 하지만 에러가 난다. 
+        // 왜냐하면 자스에서 중괄호가 함수의 시작중괄호인지 
+        // 오브젝트의 시작 중괄호인지 구별을 못함.
+        // 그래서 전체를 괄호()로 감싸 오브젝트인것을 알려준다.
+        let arr2 = users.map( x => ( {...x, 'adult' : x.age >= 20}) );
+        console.log(arr2);
+    </script>
+</body>
+</html>

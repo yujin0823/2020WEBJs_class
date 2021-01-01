@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>복습3</title>
+</head>
+<body>
+    <script>
+        // reduce는 줄이는 거, 배열에 있는 값을 종합해서 하나의 값으로 만들어낸는 것
+        let num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+        // num.reduce(함수, 초기값);
+        // 초기값 처음에 몇 부터 시작할 것이냐?
+        // sum : 더해지는 누적 값, x : 배열의 값
+        // 리턴된 값을 sum에 누적시키는 방식 그래서 return sum + x;
+        // 리턴된 sum + x를 다시 sum에 넣어줌
+        let s = num.reduce( (sum ,x) => sum + x, 0 );
+        console.log(s);
+
+        // 초기값이 0이 아니라 {}
+        // 출력된 값은 오브젝트, 거기에 s라는 속성에 무엇이 들어가있을까?
+        let s2 = num.reduce( (sum ,x) => sum.s2 + x, {} );
+        console.log(s2); // NaN
+        // 왜냐하면 {}에 s가 존재하지않음 즉 undefined
+        // undefined에 숫자를 더하면 NaN
+
+        // sum에 s3를 더해 sum자체를 리턴해야 하니까
+        //...sum로 오브젝트로 하고 s3에 sum.s3 + x를 넣어
+        let s3 = num.reduce( (sum ,x) => ({...sum, s3:sum.s3 + x}), {s3:0});
+        console.log(s3);
+
+        // 만약에 현재 있는 s가 없다면 0을 넣어주고 그렇지 않다면 
+        // 존재하는 s의 값을 넣어주고 싶다면
+        // sum.s4가 참(!=언디파인드)이 아니게되면(=언디파인드) 그때 0이 들어온다.
+        // 참이면(!=언디파인드) sum.s4 이 값이 들어온다. 왜냐하면 ||(or)이니까 
+        let s4 = num.reduce( (sum ,x) => ({...sum, s4: (sum.s4 || 0) + x}), {});
+        console.log(s4);
+    </script>
+</body>
+</html>
