@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>수업 + 복습</title>
+    <style>
+        /* .msg {
+            background-color: #ddd;
+            padding: 10px;
+        } */
+
+        /* #popup {
+            background-color: rgba(0, 0, 0, 0.3);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+        }
+
+        #popup > div {
+            width: 300px;
+            height: 200px;
+            background-color: #fff;
+            border-radius: 5px;
+        } */
+
+        #list {
+            width: 800px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            padding:8px 12px;
+            box-shadow: 2px 2px 2px rgba(0,0,0, 0.1);
+            border-radius: 0.75rem;
+        }
+
+        #popup {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0,0,0, 0.3);
+            position: fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+        }
+
+        .inner {
+            padding:8px 12px;
+            background-color: #fff;
+            border-radius: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- data안에 있는 변수를 html속성에 바인드 시키고자 하면 v-bind를써라 -->
+        <!-- <span v-bind:title="title">
+            <img :src="src" alt="">
+            마우스를 올려보세요.
+        </span> -->
+
+        <!-- if, else 꼭 붙여서 사용해라 -->
+        <!-- <div class="msg" v-if="!isLogin">안녕하세요</div> -->
+        <!-- v-else써도 같다. true(아래 코드) -->
+        <!-- <div class="msg" v-if="isLogin">로그인 중</div>  -->
+
+        <!-- <button @click="isOpen = true">열기</button>
+        <div id="popup" v-if="isOpen">
+            <div>
+                <button @click="isOpen = false">닫기</button>
+            </div>
+        </div> -->
+
+        <div id="list">
+            <!-- 변수 in 배열이름 -->
+            <div class="item" v-for="u in userList">
+                <span>{{u.id}}</span>
+                <span>{{u.name}}</span>
+                <button @click="remove(u.id)">삭제</button>
+            </div>
+        </div>
+        <button @click="isOpen = true">추가하기</button>
+        <div id="popup" v-if="isOpen">
+            <div class="inner">
+                <input type="text" v-model="txtName" @keydown.enter="insert">
+                <button @click="insert">입력</button>
+                <button @click="isOpen = false">취소</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let v = new Vue({
+            el: "#app", // 연결하는 것 #app이랑
+            // template : '<h1>Hello World</h1>', // template은 html안에 들어갈 내용
+            data: { // #app에서 사용할 변수명
+                // title: '이 페이지는 ' + new Date() + '에 로드 되었습니다.',
+                // src: 'a.jsp',
+                // isLogin: false,
+                // isOpen: false,
+                userList: [
+                    {id:1, name:"이수안"}, 
+                    {id:2, name:"임채영"}, 
+                    {id:3, name:"임상언"}, 
+                    {id:4, name:"김영현"}
+                ],
+                isOpen: false,
+                txtName: '',
+            },
+            methods: { // #app에서 사용할 함수
+                remove(userId) {
+                    // this.userList에서 findIndex를 이용해서 userId의 index를 찾아서
+                    // this.userList의 splice를 통해서 그녀석을 제거하면 된다.
+                    // let idx = this.userList.findIndex(x => x.id === userId);
+                    // console.log(idx);
+                    // this.userList.splice(idx, 1);
+
+                    this.userList = this.userList.filter(x => x.id !== userId);
+                    // console.log(userId);
+                }, 
+                insert() {
+                    this.userList.push({id : this.maxId, name : this.txtName});
+                    this.isOpen = false;
+                }
+            },
+            computed: { // 항상 변화하는 애
+                maxId() {
+                    return Math.max(...this.userList.map(x => x.id)) + 1;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+    <style>
+        .flex-box {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <textarea cols="30" rows="10" v-model="text"></textarea>
+        {{text}}
+        <br>
+
+        <!-- <input type="checkbox" value="이유진1" v-model="checkValue">
+        <label>이유진1</label>
+        <input type="checkbox" value="이유진2" v-model="checkValue">
+        <label>이유진2</label>
+        <input type="checkbox" value="이유진3" v-model="checkValue">
+        <label>이유진3</label>
+        <input type="checkbox" value="이유진4" v-model="checkValue">
+        <label>이유진4</label>
+        <input type="checkbox" value="이유진5" v-model="checkValue">
+        <label>이유진5</label> -->
+
+        <div class="flex-box">
+            <!-- template 그려지는 순간 사라진다. -->
+            <template v-for="name in nameList">
+                <input type="checkbox" :value="name" v-model="checkValue">
+                <label>{{name}}</label>
+            </template>
+        </div>
+        <span>체크한 이름 : {{checkValue}}</span>
+
+        <div class="flex-box">
+            <div v-for="name in nameList">
+                <input type="radio" :value="name" v-model="pickValue">
+                <label>{{name}}</label>
+            </div>
+        </div>
+        <span>체크한 이름 : {{pickValue}}</span>
+
+        <br>
+        <select v-model="selctValue">
+            <option v-for="name in nameList" :value="name">{{name}}</option>
+        </select>
+        <span>체크한 이름 : {{selctValue}}</span>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                text: '',
+                nameList: ["이유진1", "이유진2", "이유진3", "이유진4", "이유진5"],
+                checkValue: [],
+                pickValue: [],
+                selctValue: []
+            }
+        });
+    </script>
+</body>
+</html>

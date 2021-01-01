@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+    <style>
+        .active {
+            background-color: rgb(62, 112, 204);
+            color:#fff;
+        }
+
+        .disable{
+            background-color: rgb(136, 142, 155);
+            color:#000;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="item" :class="itemClass">안녕</div>
+        <button @click="itemClass.active = true; itemClass.disable = false">활성화</button>
+        <button @click="itemClass.disable = true; itemClass.active = false">비활성화</button>
+        <button @click="itemClass.active = false; itemClass.disable = false">노멀</button>
+    </div>
+    <script>
+        let v = new Vue({
+            el:"#app",
+            data:{
+                itemClass: {
+                    active : false,
+                    disable : false
+                }
+            }
+        })
+    </script>
+</body>
+</html>

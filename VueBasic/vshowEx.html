@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+    <style>
+        .list-item {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .list-enter-active, .list.-leave-active {
+            transition: all 1s;
+        }
+
+        /* 밑으로 내려가면서 페이드아웃 */
+        .list-enter, .list-leave-to {
+            opacity: 0;
+            transform: translateY(30px); 
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- v-if는 조건문에따라 사라지게 한다. -->
+        <!-- v-show는 display:none의 값을 넣어준다. dom은 그대로 있다. -->
+        
+        <!-- show가 true가 되면 나오고 false가 되면 없어짐 -->
+        <!-- <button @click="show = !show">Show</button>
+        <div v-show="show"> 
+            <h1>Hello world</h1>
+        </div> -->
+
+        <!-- key는 고유하게 식별해주는 놈 -->
+        <!-- 고유하게 식별해주는 놈이 있어야 애니메이션을 넣어줄 수 있다. -->
+        <!-- key없으면 에러난다. key없이 transition-group에 childX -->
+        <button @click="add">삽입</button>
+        <transition-group name="list" tag="div">
+            <span v-for="item in list" :key="item.id">
+                {{item.name}} 
+                <button @click="del(item.id)">삭제</button>
+            </span>
+        </transition-group>
+
+        <!-- (num, idx)의 idx에 인덱스가 들어감 -->
+        <!-- <div v-for="(num, idx) in numList" :key="idx">
+            {{num}}
+        </div> -->
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                show: false,
+                list: [
+                    {id:1, name:"이유진1", age:18},
+                    {id:2, name:"이유진2", age:19},
+                    {id:3, name:"이유진3", age:20},
+                    {id:4, name:"이유진4", age:21},
+                    {id:5, name:"이유진5", age:22},
+                    {id:6, name:"이유진6", age:23}
+                ],
+                numList: [1, 2, 3, 4, 5]
+            },
+            methods: {
+                add() {
+                    this.list.push({id:this.maxId, name:"이유진" + this.maxId, age:24});
+                },
+                del(id) {
+                    this.list = this.list.filter( x => x.id !== id);
+                }
+            },
+            computed: {
+                maxId() {
+                    // 리스트에 있는 것중 id를 뽑아서 Math.max로 최대값을 뽑아낸다.
+                    return Math.max(...this.list.map(x => x.id)) + 1;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

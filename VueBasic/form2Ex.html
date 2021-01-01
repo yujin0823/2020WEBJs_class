@@ -1,0 +1,48 @@
+!<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div class="userList">
+            <user v-for="user in nameList" :key="user.id" :data="user" @del="del"></user>
+        </div>
+    </div>
+
+    <script>
+        // user라는 이름으로 component등록
+        Vue.component('user', {
+            template:`<div><h1>{{data.name}}, {{data.age}}</h1> <button @click="del">삭제</button> </div>`,
+            props: { // props로 데이터가 넘어옴
+                data:Object
+            },
+            methods: {
+                del() {
+                    this.$emit("del" , this.data.id);
+                }
+            }
+        });
+        new Vue({
+            el: "#app",
+            data: {
+                nameList: [
+                    {id:1, name:"이유진1", age:18},
+                    {id:2, name:"이유진2", age:18},
+                    {id:3, name:"이유진3", age:18},
+                    {id:4, name:"이유진4", age:18},
+                    {id:5, name:"이유진5", age:18},
+                ],
+            },
+            methods: {
+                del(id) {
+                    this.nameList = this.nameList.filter(x => x.id != id);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
