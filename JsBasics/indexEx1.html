@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>복습1</title>
+</head>
+<body>
+    <script>
+        var a;
+        console.log(a); // -> undefined : 정의하지 않는 것(값 할당X)
+        // console객체 
+        // var a; // 이것도 undefined
+        // let a; // 오류
+
+        console.log("안녕하세요"); // console객체 
+        console.error("에러메시지");
+        console.warn("경고메시지");
+        console.log("%cHello %cY-Y", 
+        "color : #c71919; font-size:25px;",
+        "color : #2196f3; font-size:40px;");
+
+        // const -> 값 변화X (자바에서 final)
+        // let vs var
+        console.log("let vs var");
+        // 결과 똑같다. undefined, 20
+        var b;
+        console.log("var : " + b); // undefined
+        b = 20;
+        console.log("var : " + b); // 20
+        let c;
+        console.log("let : " + c); // undefined
+        c = 20;
+        console.log("let : " + c); // 20
+
+        // var는 선언하지 않는 것을 undefined라고 출력한다.
+        // 하지만 let은 선언하지 않으면 에러 -> 즉 자바랑 비슷하다.
+        // 아래 코드가 가능하다. 하지만 타입이 let이면 오류 발생!!
+        // if (4 > 3) {
+        //     var test = 10;
+        // }
+        // console.log(test); -> 10
+        // string, object({}), number, symbol, undefined
+
+        let d = { // object
+            "name of human" : "이유진",
+            "name" : "이유진",
+            "age" : "18",
+            "intro" : function() {
+                console.log("안녕하세요");
+            }
+        };
+
+        console.log(d.intro());
+        console.log(d["name of human"]); // 띄어쓰기했을 때
+
+        console.log("const 예제");
+        const person = {
+            name : "이유진"
+        }
+        
+        console.log(person);
+        person.name = "ㅇㅇㅇ";
+        console.log(person);
+    </script>
+</body>
+</html>

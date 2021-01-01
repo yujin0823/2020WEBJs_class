@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log("-----배열-----");
+        // 배열 기능 push, splice, slice, concat
+        // let arr1 = []; // 리스트
+        // arr1.push("안녕");
+        // arr1.push(123);
+        // arr1.push(false);
+
+        // console.log(arr1);
+
+        // for (let i = 0; i < arr1.length; i++) {
+        //     console.log(arr1[i]);
+        // }
+
+        // let arr2 = [1, 2, 3, 4, 5, 6, 7];
+
+        // // delete arr2[2];
+        // arr2.splice(2, 1);
+        // let result1 = arr2.slice(2, 1);
+        // let result2 = arr2.slice(2, 3);
+
+        // console.log(arr2);
+        // console.log(result1, result2);
+
+        // let a = [1, 2, 3, 4];
+        // let b = [5, 6, 7, 8];
+
+        // let c =  a.concat(b);
+
+        // console.log(c);
+
+        // let arr = ["최선한", "양영", "디지털", "기능반", "웹", "최선한"];
+        // let idx = arr.indexOf("디지털");
+        // let idx = arr.indexOf("최선한"); -> 0이 나옴
+        // lastIndexOf("최선한"); 하면 -> 마지막 인덱스가 나온다.
+        // shift(첫번째 원소 빼기), pop(마지막 원소 빼주는)
+
+        // console.log(idx);
+        // console.log(arr.slice(1));
+        
+        console.log("-----함수-----");
+        // 기능을 모아놓은 것 이 함수
+        // 같은 기능이 반복적으로 실행된다면 ㅡ것을 하나의 함수로 몰아서
+        // 함수만 호출하면 그 일이 이루어지게 하는게 함수를 쓰는 이유
+        // 인간이 반복작업하기 귀찮아서
+        //    함수이름 매게변수
+        function add(a, b) {
+            if (arguments.length == 2) {
+                return a + b;
+            } else if (arguments.length == 3) {
+                return a + b + arguments[2];
+            }
+        }
+
+        console.log(add(3, 4));
+        console.log(add(7, 10));
+        console.log(add(9, 20));
+        console.log(add(3, 4, 10));
+    </script>
+</body>
+</html>
